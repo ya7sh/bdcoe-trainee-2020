@@ -9,3 +9,4 @@ int birthday(int s_count, int* s, int d, int m) {
      }
      return count ;
 }
+????
