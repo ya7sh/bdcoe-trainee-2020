@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <process.h>
+
 #include <string.h>
 
 struct contact
@@ -13,6 +14,10 @@ struct contact
 
 void input();
 void display();
+void search();
+void searchByRoll();
+void searchByName();
+void modify();
 
 FILE *fp;
 
@@ -25,6 +30,8 @@ void main()
         printf("\n<== Contact Managment ==>\n");
         printf("1.Input Data\n");
         printf("2.Display Data\n");
+        printf("3.Search\n");
+        printf("4.Modify\n");
         printf("0.Exit\n\n");
         printf("Enter Your choice: ");
         scanf("%d", &ch);
@@ -39,6 +46,13 @@ void main()
 
         case 2:
             display();
+            break;
+        case 3:
+            search();
+            break;
+
+        case 4:
+            modify();
             break;
 
         default:
@@ -78,4 +92,38 @@ void display()
     }
     fclose(fp);
     printf("Press any key to continue...");
+}
+
+void search(){
+int ch;
+
+while(1){
+clrscr();
+printf("<== Contact Management ==>\n");
+printf("<== Search ==>\n");
+printf("1.Search By Phone\n");
+printf("2.Search By Name\n");
+printf("0.Back To Main Menu\n");
+printf("\n\nEnter your choice: ");
+scanf("%d",&ch);
+
+switch(ch){
+case 0:
+main();
+break;
+
+case 1:
+searchByRoll();
+break;
+
+case 2:
+searchByName();
+break;
+
+default:
+printf("Invalid Choice");
+
+}
+getch();
+}
 }
