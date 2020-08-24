@@ -85,11 +85,11 @@ void display()
 {
     clrscr();
     printf("<== Contact Info ==>\n\n");
-    printf("\t\tName\t\tAddress\t\tPhone\t\temail");
+    printf("\tName\t\tAddress\t\tPhone\t\temail");
     fp = fopen("st.txt", "rb");
     while (fread(&c, sizeof(c), 1, fp) == 1)
     {
-        printf("\t\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
+        printf("\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
     }
     fclose(fp);
     printf("Press any key to continue...");
@@ -133,12 +133,12 @@ void searchByphone(){
 int ph,f=0;
 printf("Enter phone to search: ");
 scanf("%d",&ph);
-printf("\t\tName\t\tAddress\t\tPhone\t\temail");
+printf("\tName\t\tAddress\t\tPhone\t\temail");
 fp=fopen("st.txt","rb");
 while(fread(&c,sizeof(c),1,fp)==1){
 if(ph == c.phone){
 f=1;
-printf("\t\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
+printf("\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
 break;
 }
 }
@@ -156,12 +156,12 @@ int f=0;
 printf("Enter Name to search: ");
 fflush(stdin);
 gets(na);
-printf("\t\tName\t\tAddress\t\tPhone\t\temail");
+printf("\tName\t\tAddress\t\tPhone\t\temail");
 fp=fopen("st.txt","rb");
 while(fread(&c,sizeof(c),1,fp)==1){
 if(strcmpi(na,c.name)==0){
 f=1;
-printf("\t\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
+printf("\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
 break;
 }
 }
@@ -188,6 +188,8 @@ printf("Enter address: ");
 scanf("%s",c.address);
 printf("Enter New Phone: ");
 scanf("%d",&c.phone);
+printf("Enter Email: ");
+scanf("%s", c.email);
 fseek(fp,-si,1);
 fwrite(&c,sizeof(c),1,fp);
 fclose(fp);
