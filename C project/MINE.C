@@ -19,47 +19,53 @@ void search();
 void searchByphone();
 void searchByName();
 void modify();
+void del();
 
 FILE *fp;
+FILE *ft;
 
 void main()
 {
     int ch;
     while (1)
     {
-        clrscr();
-        printf("\n<== Contact Managment ==>\n");
-        printf("1.Input Data\n");
-        printf("2.Display Data\n");
-        printf("3.Search\n");
-        printf("4.Modify\n");
-        printf("0.Exit\n\n");
-        printf("Enter Your choice: ");
-        scanf("%d", &ch);
-        switch (ch)
-        {
-        case 0:
-            exit(0);
+	clrscr();
+	printf("\n<== Contact Managment ==>\n");
+	printf("1.Input Data\n");
+	printf("2.Display Data\n");
+	printf("3.Search\n");
+	printf("4.Modify\n");
+	printf("5.Delete\n");
+	printf("0.Exit\n\n");
+	printf("Enter Your choice: ");
+	scanf("%d", &ch);
+	switch (ch)
+	{
+	case 0:
+	    exit(0);
 
-        case 1:
-            input();
-            break;
+	case 1:
+	    input();
+	    break;
 
-        case 2:
-            display();
-            break;
-        case 3:
-            search();
-            break;
+	case 2:
+	    display();
+	    break;
+	case 3:
+	    search();
+	    break;
 
-        case 4:
-            modify();
-            break;
+	case 4:
+	    modify();
+	    break;
+	case 5:
+del();
+break;
 
-        default:
-            printf("Invalid Choice");
-        }
-        getch();
+	default:
+	    printf("Invalid Choice");
+	}
+	getch();
     }
 }
 
@@ -89,7 +95,7 @@ void display()
     fp = fopen("st.txt", "rb");
     while (fread(&c, sizeof(c), 1, fp) == 1)
     {
-        printf("\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
+	printf("\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
     }
     fclose(fp);
     printf("Press any key to continue...");
@@ -200,5 +206,34 @@ if(f==0)
 printf("Record Not Found...");
 else
 printf("Modified Successfully...");
+
+}
+
+void del(){
+int ph, f=0;
+printf("Enter phone to delete: ");
+scanf("%d",&ph);
+
+
+fp = fopen("st.txt","rb");
+ft = fopen("temp.txt","ab");
+
+while(fread(&c,sizeof(c),1,fp)==1){
+if(ph == c.phone){
+f=1;
+}else{
+fwrite(&c,sizeof(c),1,ft);
+}
+
+}
+fclose(fp);
+fclose(ft);
+remove("st.txt");
+rename("temp.txt","st.txt");
+
+if(f==0)
+printf("Record Not Found...");
+else
+printf("Record Deleted Successfully...");
 
 }
