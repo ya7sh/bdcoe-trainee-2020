@@ -16,8 +16,6 @@ void input();
 void display();
 void search();
 void searchByRoll();
-void searchByName();
-void modify();
 
 FILE *fp;
 
@@ -52,13 +50,13 @@ void main()
             break;
 
         case 4:
-            modify();
-            break;
 
-        default:
-            printf("Invalid Choice");
-        }
-        getch();
+	    break;
+
+	default:
+	    printf("Invalid Choice");
+	}
+	getch();
     }
 }
 
@@ -88,7 +86,7 @@ void display()
     fp = fopen("st.txt", "rb");
     while (fread(&c, sizeof(c), 1, fp) == 1)
     {
-        printf("\t\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
+	printf("\t\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
     }
     fclose(fp);
     printf("Press any key to continue...");
@@ -117,7 +115,7 @@ searchByRoll();
 break;
 
 case 2:
-searchByName();
+
 break;
 
 default:
@@ -126,4 +124,25 @@ printf("Invalid Choice");
 }
 getch();
 }
+}
+
+void searchByRoll(){
+int ph,f=0;
+printf("Enter phone to search: ");
+scanf("%d",&ph);
+printf("\t\tName\t\tAddress\t\tPhone\t\temail");
+fp=fopen("st.txt","rb");
+while(fread(&c,sizeof(c),1,fp)==1){
+if(ph == c.phone){
+f=1;
+printf("\t\t %s \t\t %s \t\t %ld \t\t %s\n", c.name, c.address, c.phone, c.email);
+break;
+}
+}
+fclose(fp);
+if(f==0)
+printf("Record Not Found...");
+else
+printf("Record Found Successfully...");
+
 }
