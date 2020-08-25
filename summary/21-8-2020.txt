@@ -1,0 +1,13 @@
+$ git config --global user.name "Your name here"
+$ git config --global user.email "your_email@example.com"
+$ git remote add origin https://github.com/username/new_repo
+$ git checkout -b iss53
+$ git branch
+$ git config --list
+$ git --version
+$ git status
+$ git log
+$ git branch yourbranch
+$ git add .
+$ git commit -m "Add existing file"
+$ git push origin your-branch
